@@ -67,6 +67,17 @@ namespace Plugin.TextToSpeech
               .Select(a => new CrossLocale { Language = a.Language, DisplayName = a.Language });
         }
 
+        /// <summary>
+        /// Stops the speaking.
+        /// </summary>
+        public void StopSpeaking()
+        {
+            if (speechSynthesizer != null && speechSynthesizer.Speaking)
+            {
+                speechSynthesizer.StopSpeaking(AVSpeechBoundary.Immediate);
+            }
+        }
+
         private AVSpeechUtterance GetSpeechUtterance(string text, CrossLocale? crossLocale, float? pitch, float? speakRate, float? volume)
         {
             AVSpeechUtterance speechUtterance;

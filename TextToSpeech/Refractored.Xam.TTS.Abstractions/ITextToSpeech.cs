@@ -31,5 +31,10 @@ namespace Plugin.TextToSpeech.Abstractions
       /// </summary>
       /// <returns></returns>
       IEnumerable<CrossLocale> GetInstalledLanguages();
+
+      /// <summary>
+      /// Stops the speaking.
+      /// </summary>
+      void StopSpeaking();
     }
 }

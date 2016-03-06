@@ -236,6 +236,17 @@ namespace Plugin.TextToSpeech
         }
 
         /// <summary>
+        /// Stops the speaking.
+        /// </summary>
+        public void StopSpeaking()
+        {
+            if (textToSpeech != null && textToSpeech.IsSpeaking)
+            {
+                textToSpeech.Stop();
+            }
+        }
+
+        /// <summary>
         /// In a different method as it can crash on older target/compile for some reason
         /// </summary>
         /// <returns></returns>

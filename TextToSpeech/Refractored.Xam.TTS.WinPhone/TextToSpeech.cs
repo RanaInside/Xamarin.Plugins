@@ -213,6 +213,22 @@ namespace Plugin.TextToSpeech
     }
 
     /// <summary>
+    /// Stops the speaking.
+    /// </summary>
+      public void StopSpeaking()
+      {
+          // todo: test this method
+#if NETFX_CORE
+            if (element != null)
+            {
+                element.Stop();
+            }
+#else
+          speechSynthesizer.CancelAll();
+#endif
+      }
+
+      /// <summary>
     /// Dispose of TTS
     /// </summary>
     public void Dispose()
