@@ -84,6 +84,7 @@ namespace Plugin.TextToSpeech
             
             var voice = GetVoiceForLocaleLanguage(crossLocale);
             
+            /* Following code doesn't work on iOS8 Simulator or real device;
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
                 speechUtterance = new AVSpeechUtterance(" ");
@@ -103,6 +104,26 @@ namespace Plugin.TextToSpeech
                     PitchMultiplier = pitch.Value
                 };
             }            
+            */
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                //var dummyUtterance = new AVSpeechUtterance(" ");
+                //dummyUtterance.Voice = voice;
+                //speechSynthesizer.SpeakUtterance(dummyUtterance);
+            }
+
+            speakRate = NormalizeSpeakRate(speakRate);
+            volume = NormalizeVolume(volume);
+            pitch = NormalizePitch(pitch);
+
+            speechUtterance = new AVSpeechUtterance(text)
+            {
+                Rate = speakRate.Value,
+                Voice = voice,
+                Volume = volume.Value,
+                PitchMultiplier = pitch.Value
+            };
 
             return speechUtterance;
         }
